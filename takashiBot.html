@@ -1,0 +1,174 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Takashi Bot</title>
+    <link rel="stylesheet" href="takashiBot.css">
+</head>
+
+<body>
+    <header>
+        <nav>
+            <p><a href="index.html">&#8592; back to maxcarty.com</a></p>
+        </nav>
+    </header>
+    <div class="container">
+        <div class="content-container">
+            <svg id="banner-canvas" preserveAspectRatio="xMinYMin meet">
+
+            </svg>
+            <div class="content-title">
+                <h2>Takashi Bot: Generate Your Own Works of Art with JavaScript</h2>
+                <h5>Built using JavaScript</h5>
+            </div>
+            <div class="content-text">
+                <p>I first learned about the Japanese artist Takashi Murakami in 2007 when researching who had created
+                    the colorful and surreal cover artwork for Kayne West’s Graduation album. Since then I’ve been
+                    continually in awe of his work.</p>
+                <p>I had the privilege of attending his exhibit at the Museum of Fine Arts in Boston in 2018.
+                    Experiencing his incredibly imaginative works in person for the first time helped me understand why
+                    I had become such a fan: his work simply inspires me to be creative.</p>
+                <p>His most recognizable creation is the smiling flower. If you browse his work you’ll surely come
+                    across a canvas or two filled with dozens of these flowers which vary in color, size, and location.
+                </p>
+                <p>I decided to build a method for recreating these colorful, flower-filled canvases using JavaScript.
+                    The final version of my project can be found below. To create a Murakami print look-alike, click the
+                    ‘Generate’ button. Enjoy!</p>
+            </div>
+            <svg id="canvas" preserveAspectRatio="xMinYMin meet">
+                <g id="placeholder" transform="translate(450, 250)">
+                    <path
+                        d="M 220.62177826491072 195 L 263.92304845413264 220 C 320.2146997001212 252.5, 252.5 320.2146997001212, 220 263.92304845413264 L 195 220.6217782649107"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 195 220.6217782649107 L 220 263.92304845413264 C 252.5 320.2146997001212, 160 345, 160 280 L 160 230"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 160 230 L 160 280 C 160 345, 67.50000000000004 320.2146997001212, 100.00000000000003 263.92304845413264 L 125.00000000000001 220.62177826491072"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 125.00000000000001 220.62177826491072 L 100.00000000000003 263.92304845413264 C 67.50000000000004 320.2146997001212, -0.21469970012111617 252.50000000000006, 56.07695154586739 220.00000000000006 L 99.37822173508931 195.00000000000003"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 99.37822173508931 195.00000000000003 L 56.07695154586739 220.00000000000006 C -0.21469970012111617 252.50000000000006, -25 160.00000000000003, 40 160.00000000000003 L 90 160"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 90 160 L 40 160.00000000000003 C -25 160.00000000000003, -0.214699700121173 67.50000000000006, 56.076951545867345 100.00000000000003 L 99.37822173508928 125.00000000000003"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 99.37822173508928 125.00000000000003 L 56.076951545867345 100.00000000000003 C -0.214699700121173 67.50000000000006, 67.49999999999991 -0.21469970012111617, 99.99999999999994 56.07695154586739 L 124.99999999999997 99.37822173508931"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 124.99999999999997 99.37822173508931 L 99.99999999999994 56.07695154586739 C 67.49999999999991 -0.21469970012111617, 159.99999999999997 -25, 159.99999999999997 40 L 160 90"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 160 90 L 159.99999999999997 40 C 159.99999999999997 -25, 252.4999999999999 -0.21469970012122985, 219.99999999999991 56.07695154586732 L 194.99999999999994 99.37822173508927"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 194.99999999999994 99.37822173508927 L 219.99999999999991 56.07695154586732 C 252.4999999999999 -0.21469970012122985, 320.21469970012106 67.49999999999991, 263.92304845413264 99.99999999999994 L 220.6217782649107 124.99999999999997"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 220.6217782649107 124.99999999999997 L 263.92304845413264 99.99999999999994 C 320.21469970012106 67.49999999999991, 345 159.99999999999994, 280 159.99999999999997 L 230 159.99999999999997"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <path
+                        d="M 230 159.99999999999997 L 280 159.99999999999997 C 345 159.99999999999994, 320.2146997001212 252.5, 263.92304845413264 220 L 220.62177826491072 195"
+                        stroke="#d8d8d8" stroke-width="3" fill="#f1f1f1"></path>
+                    <circle cx="160" cy="160" r="70" fill="#f1f1f1" stroke="#d8d8d8" stroke-width="3"></circle>
+                    <path d="M 110 160 a 50 50 0 0 0 100 0" fill="#f1f1f1" stroke="#d8d8d8" stroke-width="3"></path>
+                    <path d="M 110 161 C 140 150, 180 150, 210 161" fill="#f1f1f1" stroke="#d8d8d8" stroke-width="3">
+                    </path>
+                    <ellipse cx="135" cy="130" rx="7" ry="10" fill="#d8d8d8" transform="rotate(45, 135, 130)"></ellipse>
+                    <ellipse cx="185" cy="130" rx="7" ry="10" fill="#d8d8d8" transform="rotate(-45, 185, 130)">
+                    </ellipse>
+                    <ellipse cx="136" cy="126.25" rx="3" ry="4.5" fill="#f1f1f1" transform="rotate(45, 136, 126.25)">
+                    </ellipse>
+                    <ellipse cx="135.5" cy="134" rx="2" ry="3" fill="#f1f1f1" transform="rotate(45, 135.5, 134)">
+                    </ellipse>
+                    <ellipse cx="184" cy="126.25" rx="3" ry="4.5" fill="#f1f1f1" transform="rotate(-45, 184, 126.25)">
+                    </ellipse>
+                    <ellipse cx="184.5" cy="134" rx="2" ry="3" fill="#f1f1f1" transform="rotate(-45, 184.5, 134)">
+                    </ellipse>
+                </g>
+            </svg>
+            <div class="controls">
+                <button id="generate">Generate</button>
+            </div>
+            <div class="breaker">
+                <hr color="#d8d8d8">
+                <div class="breaker-flower">
+                    <svg align="center">
+                        <g transform="translate(0, 0) scale(.10)">
+                            <path d=" M 220.62177826491072 195 L 263.92304845413264 220 C 320.2146997001212 252.5, 252.5
+                            320.2146997001212, 220 263.92304845413264 L 195 220.6217782649107" stroke="black"
+                                stroke-width="3" fill="#ffd60a">
+                            </path>
+                            <path
+                                d="M 195 220.6217782649107 L 220 263.92304845413264 C 252.5 320.2146997001212, 160 345, 160 280 L 160 230"
+                                stroke="black" stroke-width="3" fill="#9ef01a"></path>
+                            <path
+                                d="M 160 230 L 160 280 C 160 345, 67.50000000000004 320.2146997001212, 100.00000000000003 263.92304845413264 L 125.00000000000001 220.62177826491072"
+                                stroke="black" stroke-width="3" fill="#38b000"></path>
+                            <path
+                                d="M 125.00000000000001 220.62177826491072 L 100.00000000000003 263.92304845413264 C 67.50000000000004 320.2146997001212, -0.21469970012111617 252.50000000000006, 56.07695154586739 220.00000000000006 L 99.37822173508931 195.00000000000003"
+                                stroke="black" stroke-width="3" fill="#00a896"></path>
+                            <path
+                                d="M 99.37822173508931 195.00000000000003 L 56.07695154586739 220.00000000000006 C -0.21469970012111617 252.50000000000006, -25 160.00000000000003, 40 160.00000000000003 L 90 160"
+                                stroke="black" stroke-width="3" fill="#89c2d9"></path>
+                            <path
+                                d="M 90 160 L 40 160.00000000000003 C -25 160.00000000000003, -0.214699700121173 67.50000000000006, 56.076951545867345 100.00000000000003 L 99.37822173508928 125.00000000000003"
+                                stroke="black" stroke-width="3" fill="#014f86"></path>
+                            <path
+                                d="M 99.37822173508928 125.00000000000003 L 56.076951545867345 100.00000000000003 C -0.214699700121173 67.50000000000006, 67.49999999999991 -0.21469970012111617, 99.99999999999994 56.07695154586739 L 124.99999999999997 99.37822173508931"
+                                stroke="black" stroke-width="3" fill="#7209b7"></path>
+                            <path
+                                d="M 124.99999999999997 99.37822173508931 L 99.99999999999994 56.07695154586739 C 67.49999999999991 -0.21469970012111617, 159.99999999999997 -25, 159.99999999999997 40 L 160 90"
+                                stroke="black" stroke-width="3" fill="#b5179e"></path>
+                            <path
+                                d="M 160 90 L 159.99999999999997 40 C 159.99999999999997 -25, 252.4999999999999 -0.21469970012122985, 219.99999999999991 56.07695154586732 L 194.99999999999994 99.37822173508927"
+                                stroke="black" stroke-width="3" fill="#fb6f92"></path>
+                            <path
+                                d="M 194.99999999999994 99.37822173508927 L 219.99999999999991 56.07695154586732 C 252.4999999999999 -0.21469970012122985, 320.21469970012106 67.49999999999991, 263.92304845413264 99.99999999999994 L 220.6217782649107 124.99999999999997"
+                                stroke="black" stroke-width="3" fill="#dc2f02"></path>
+                            <path
+                                d="M 220.6217782649107 124.99999999999997 L 263.92304845413264 99.99999999999994 C 320.21469970012106 67.49999999999991, 345 159.99999999999994, 280 159.99999999999997 L 230 159.99999999999997"
+                                stroke="black" stroke-width="3" fill="#e85d04"></path>
+                            <path
+                                d="M 230 159.99999999999997 L 280 159.99999999999997 C 345 159.99999999999994, 320.2146997001212 252.5, 263.92304845413264 220 L 220.62177826491072 195"
+                                stroke="black" stroke-width="3" fill="#ffba08"></path>
+                            <circle cx="160" cy="160" r="70" fill="yellow" stroke="black" stroke-width="3"></circle>
+                            <path d="M 110 160 a 50 50 0 0 0 100 0" fill="red" stroke="black" stroke-width="3">
+                            </path>
+                            <path d="M 110 161 C 140 150, 180 150, 210 161" fill="red" stroke="black" stroke-width="3">
+                            </path>
+                            <ellipse cx="135" cy="130" rx="7" ry="10" fill="black" transform="rotate(45, 135, 130)">
+                            </ellipse>
+                            <ellipse cx="185" cy="130" rx="7" ry="10" fill="black" transform="rotate(-45, 185, 130)">
+                            </ellipse>
+                            <ellipse cx="136" cy="126.25" rx="3" ry="4.5" fill="white"
+                                transform="rotate(45, 136, 126.25)">
+                            </ellipse>
+                            <ellipse cx="135.5" cy="134" rx="2" ry="3" fill="white" transform="rotate(45, 135.5, 134)">
+                            </ellipse>
+                            <ellipse cx="184" cy="126.25" rx="3" ry="4.5" fill="white"
+                                transform="rotate(-45, 184, 126.25)">
+                            </ellipse>
+                            <ellipse cx="184.5" cy="134" rx="2" ry="3" fill="white" transform="rotate(-45, 184.5, 134)">
+                            </ellipse>
+                        </g>
+                    </svg>
+                </div>
+
+            </div>
+        </div>
+    </div>
+    <footer>
+        <h3 class="signature">Designed & Built by Max Carty</h3>
+        <h3 class="email"><a href="mailto: mcarty79@gmail.com" target="_blank">Contact Me</a></h3>
+    </footer>
+    <script src="takashiBot.js"></script>
+</body>
+
+</html>
