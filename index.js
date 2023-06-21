@@ -1,6 +1,7 @@
 const canvas = document.querySelector('#canvas');
 const bannerCanvas = document.querySelector('#banner-canvas');
 const container = document.querySelector('#canvas-container');
+const chooseColor = document.querySelector('#chooseColor');
 const placeholder = document.querySelector('#placeholder');
 const button = document.querySelector('#generate');
 const numOfPoints = 12;
@@ -21,6 +22,20 @@ const placeholderSize = placeholder.getBBox();
 console.log(placeholderSize);
 placeholder.setAttribute('transform', `translate(${(viewBoxW / 2) - (placeholderSize.width / 2)}, ${(viewBoxH / 2) - (placeholderSize.height / 2)})`);
 
+const colorPalettes = {
+    rainbow: ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff', '#E6E6FA', '#DA70D6', '#AAFF00', '#ef476f', '#ffd166', '#31572c', '#118ab2', '#073b4c', '#ff595e', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93', '#540d6e', '#ee4266', '#3bceac', '#0ead69', '#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'],
+    //red: ['#fce7ea', '#f6b9c2', '#f08b9a', '#ea5d72', '#e42f4a', '#e21836', '#cb1530', '#b4132b', '#870e20', '#5a0915'],
+    red: ['#f9e5e5', '#efb2b2', '#e57f7f', '#db4c4c', '#d63232', '#d11919', '#cc0000', '#b70000', '#8e0000', '#660000'],
+    orange: ['#ff4800', '#ff5400', '#ff6000', '#ff6d00', '#ff7900', '#ff8500', '#ff9100', '#ff9e00', '#ffaa00', '#ffb600'],
+    yellow: ['#fff3d1', '#ffe8a3', '#ffdc75', '#ffd147', '#ffcb30', '#ffc61a', '#ffd75e', '#e5b217', '#cc9e14', '#b28a12'],
+    blue: ['#e3f2fd', '#bbdefb', '#90caf9', '#64b5f6', '#42a5f5', '#2196f3', '#1e88e5', '#1976d2', '#1565c0', '#0d47a1'],
+    green: ['#e8f3e8', '#bcdcbc', '#90c590', '#64ad64', '#389638', '#228b22', '#1e7d1e', '#389638', '#176117', '#114511'],
+    purple: ['#f0eaf5', '#d2c1e2', '#b498cf', '#966fbb', '#875ab2', '#7846a8', '#6a329f', '#5f2d8f', '#4a236f', '#35194f'],
+    pink: ['#ff0a54', '#ff477e', '#ff5c8a', '#ff7096', '#ff85a1', '#ff99ac', '#fbb1bd', '#f9bec7', '#f7cad0', '#fae0e4'],
+    newBalance: ['#f2f2f2', '#cccccc', '#a5a5a5', '#7f7f7f', '#595959', '#eae0d5', '#c6ac8f', '#cebebe', '#ece2d0', '#d5b9b2', '#e21836']
+}
+
+let palette = colorPalettes.rainbow;
 
 const colors = ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff', '#E6E6FA', '#DA70D6', '#AAFF00', '#ef476f', '#ffd166', '#31572c', '#118ab2', '#073b4c', '#ff595e', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93', '#540d6e', '#ee4266', '#3bceac', '#0ead69', '#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'];
 const flowerSizes = [.15, 0.2, .25, 0.3];
@@ -32,7 +47,7 @@ function createCircle(cx, cy, r, strokeWidth, svg) {
     circle.setAttribute('cx', cx);
     circle.setAttribute('cy', cy);
     circle.setAttribute('r', r);
-    circle.setAttribute('fill', randomChoice(colors));
+    circle.setAttribute('fill', randomChoice(palette));
     circle.setAttribute('stroke', 'black');
     circle.setAttribute('stroke-width', strokeWidth);
     svg.appendChild(circle);
@@ -60,7 +75,7 @@ function petalPoints(centerX, centerY) {
 function drawMouth(x, y, r, svg) {
     const bottom = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     const top = document.createElementNS('http://www.w3.org/2000/svg', 'path');
-    const color = randomChoice(colors);
+    const color = randomChoice(palette);
     bottom.setAttribute('d', `M ${x - r} ${y} a ${r} ${r} 0 0 0 ${r * 2} 0`);
     bottom.setAttribute('fill', color);
     bottom.setAttribute('stroke', 'black');
@@ -131,7 +146,7 @@ function placeFlowers(el) {
 function drawFlower(x, y, scale, el) {
     const group = document.createElementNS('http://www.w3.org/2000/svg', 'g');
     petalPoints(160, 160);
-    const petalColor = randomChoice(colors);
+    const petalColor = randomChoice(palette);
     for (let i = 0; i < innerPoints.length - 1; i++) {
         drawPetals(innerPoints[i][0], innerPoints[i][1], innerPoints[i + 1][0], innerPoints[i + 1][1], middlePoints[i][0], middlePoints[i][1], middlePoints[i + 1][0], middlePoints[i + 1][1], outerPoints[i][0], outerPoints[i][1], outerPoints[i + 1][0], outerPoints[i + 1][1], group, petalColor);
     }
@@ -164,6 +179,10 @@ function drawFlower(x, y, scale, el) {
 button.addEventListener('click', () => {
     clear(canvas);
     placeFlowers(canvas);
-})
+});
+
+chooseColor.addEventListener('change', function () {
+    palette = colorPalettes[this.value];
+});
 
 placeFlowers(bannerCanvas);

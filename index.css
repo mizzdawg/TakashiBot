@@ -49,6 +49,7 @@ nav a {
     width: 100%;
     background-color: #f1f1f1;
     border-radius: 5px;
+    margin-bottom: 31px;
     overflow: hidden;
 }
 
@@ -80,6 +81,15 @@ nav a {
 }
 
 
+#chooseColor {
+    margin: 15px 0px;
+    padding: 6px 12px;
+    font-size: 16px;
+    line-height: 24px;
+    font-weight: 400;
+    border-radius: 7px;
+    border: 2px solid #d8d8d8;
+}
 
 button {
     margin: 15px 0px;
