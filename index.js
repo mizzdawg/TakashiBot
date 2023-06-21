@@ -1,3 +1,4 @@
+// Define variables
 const canvas = document.querySelector('#canvas');
 const bannerCanvas = document.querySelector('#banner-canvas');
 const container = document.querySelector('#canvas-container');
@@ -15,16 +16,9 @@ const coords = [];
 const viewBoxW = 900;
 const viewBoxH = 500;
 
-bannerCanvas.setAttribute('viewBox', `0 0 ${viewBoxW} ${viewBoxH}`);
-canvas.setAttribute('viewBox', `0 0 ${viewBoxW} ${viewBoxH}`);
-
-const placeholderSize = placeholder.getBBox();
-console.log(placeholderSize);
-placeholder.setAttribute('transform', `translate(${(viewBoxW / 2) - (placeholderSize.width / 2)}, ${(viewBoxH / 2) - (placeholderSize.height / 2)})`);
-
+// Object containing different color palettes available in HTML select element - remember to add as option there
 const colorPalettes = {
     rainbow: ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff', '#E6E6FA', '#DA70D6', '#AAFF00', '#ef476f', '#ffd166', '#31572c', '#118ab2', '#073b4c', '#ff595e', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93', '#540d6e', '#ee4266', '#3bceac', '#0ead69', '#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'],
-    //red: ['#fce7ea', '#f6b9c2', '#f08b9a', '#ea5d72', '#e42f4a', '#e21836', '#cb1530', '#b4132b', '#870e20', '#5a0915'],
     red: ['#f9e5e5', '#efb2b2', '#e57f7f', '#db4c4c', '#d63232', '#d11919', '#cc0000', '#b70000', '#8e0000', '#660000'],
     orange: ['#ff4800', '#ff5400', '#ff6000', '#ff6d00', '#ff7900', '#ff8500', '#ff9100', '#ff9e00', '#ffaa00', '#ffb600'],
     yellow: ['#fff3d1', '#ffe8a3', '#ffdc75', '#ffd147', '#ffcb30', '#ffc61a', '#ffd75e', '#e5b217', '#cc9e14', '#b28a12'],
@@ -35,13 +29,35 @@ const colorPalettes = {
     newBalance: ['#f2f2f2', '#cccccc', '#a5a5a5', '#7f7f7f', '#595959', '#eae0d5', '#c6ac8f', '#cebebe', '#ece2d0', '#d5b9b2', '#e21836']
 }
 
+// Set default value to rainbow palette
 let palette = colorPalettes.rainbow;
 
-const colors = ['#ffbe0b', '#fb5607', '#ff006e', '#8338ec', '#3a86ff', '#E6E6FA', '#DA70D6', '#AAFF00', '#ef476f', '#ffd166', '#31572c', '#118ab2', '#073b4c', '#ff595e', '#ffca3a', '#8ac926', '#1982c4', '#6a4c93', '#540d6e', '#ee4266', '#3bceac', '#0ead69', '#ffadad', '#ffd6a5', '#fdffb6', '#caffbf', '#9bf6ff', '#a0c4ff', '#bdb2ff', '#ffc6ff'];
+// arrays containing data used to adjust size and placement of flowers
 const flowerSizes = [.15, 0.2, .25, 0.3];
 const coordRandomizer = [0, -5, 5, -6, 6, -7, 7, -8, 8, -9, 9, -10, 10, -20, 20, -30, 30];
 
+bannerCanvas.setAttribute('viewBox', `0 0 ${viewBoxW} ${viewBoxH}`);
+canvas.setAttribute('viewBox', `0 0 ${viewBoxW} ${viewBoxH}`);
 
+// Center placeholder flower in middle of canvas
+const placeholderSize = placeholder.getBBox();
+placeholder.setAttribute('transform', `translate(${(viewBoxW / 2) - (placeholderSize.width / 2)}, ${(viewBoxH / 2) - (placeholderSize.height / 2)})`);
+
+// Chooses a random item in an array using Math object methods
+function randomChoice(arr) {
+    const idx = Math.floor(Math.random() * arr.length);
+    const choice = arr[idx];
+    return choice;
+}
+
+// Clears given element's child elements
+function clear(el) {
+    while (el.lastChild) {
+        el.removeChild(el.lastChild);
+    }
+}
+
+// Creates flower body by generating 
 function createCircle(cx, cy, r, strokeWidth, svg) {
     const circle = document.createElementNS('http://www.w3.org/2000/svg', 'circle');
     circle.setAttribute('cx', cx);
@@ -53,6 +69,8 @@ function createCircle(cx, cy, r, strokeWidth, svg) {
     svg.appendChild(circle);
 }
 
+
+// Generates coordinates to draw two straight lines from edge of cirlce and a Bezier curve to connect them, forming a petal
 function petalPoints(centerX, centerY) {
     const theta = 2.0 * Math.PI / numOfPoints;
     for (let i = 1; i <= numOfPoints; i++) {
@@ -67,11 +85,9 @@ function petalPoints(centerX, centerY) {
         outerPoints.push([pointXO, pointYO]);
     }
 
-    innerPoints.push([innerPoints[0][0], innerPoints[0][1]]);
-    middlePoints.push([middlePoints[0][0], middlePoints[0][1]]);
-    outerPoints.push([outerPoints[0][0], outerPoints[0][1]]);
 }
 
+// Draw flower mouth by creating path elements, setting attributes and appending them to canvas
 function drawMouth(x, y, r, svg) {
     const bottom = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     const top = document.createElementNS('http://www.w3.org/2000/svg', 'path');
@@ -88,6 +104,8 @@ function drawMouth(x, y, r, svg) {
     svg.appendChild(top);
 }
 
+
+// Draw flower eyes
 function drawEyes(cx, cy, rx, ry, rotate, color, svg) {
     const eye = document.createElementNS('http://www.w3.org/2000/svg', 'ellipse');
     eye.setAttribute('cx', cx);
@@ -109,18 +127,7 @@ function drawPetals(ix1, iy1, ix2, iy2, mx1, my1, mx2, my2, ox1, oy1, ox2, oy2, 
     svg.appendChild(path);
 }
 
-function randomChoice(arr) {
-    const idx = Math.floor(Math.random() * arr.length);
-    const choice = arr[idx];
-    return choice;
-}
-
-function clear(el) {
-    while (el.lastChild) {
-        el.removeChild(el.lastChild);
-    }
-}
-
+// Generates coords to place flowers across grid
 function placeFlowers(el) {
     const width = viewBoxW;
     const height = viewBoxH;
@@ -168,21 +175,24 @@ function drawFlower(x, y, scale, el) {
     outerPoints.length = 0;
 }
 
-// drawFlower(50, 50, .2);
-// drawFlower(175, 50, .6);
-// drawFlower(50, 175, .55);
-// drawFlower(250, 125, .2);
-// drawFlower(150, 250, .9);
-// drawFlower(750, 250, .5);
-
-//button code to reuse later!!!
+// Handle button click
 button.addEventListener('click', () => {
     clear(canvas);
     placeFlowers(canvas);
 });
 
+// Handle Select value change
 chooseColor.addEventListener('change', function () {
     palette = colorPalettes[this.value];
 });
 
+
+// Generate banner on top of page
 placeFlowers(bannerCanvas);
+
+
+
+    // innerPoints.push([innerPoints[0][0], innerPoints[0][1]]);
+    // middlePoints.push([middlePoints[0][0], middlePoints[0][1]]);
+    // outerPoints.push([outerPoints[0][0], outerPoints[0][1]]);
+    // console.log(innerPoints);
