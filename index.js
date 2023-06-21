@@ -84,7 +84,6 @@ function petalPoints(centerX, centerY) {
         middlePoints.push([pointXM, pointYM]);
         outerPoints.push([pointXO, pointYO]);
     }
-
 }
 
 // Draw flower mouth by creating path elements, setting attributes and appending them to canvas
@@ -115,9 +114,9 @@ function drawEyes(cx, cy, rx, ry, rotate, color, svg) {
     eye.setAttribute('fill', color);
     eye.setAttribute('transform', `rotate(${rotate}, ${cx}, ${cy})`) //45, 225, 220
     svg.appendChild(eye);
-
 }
 
+// Draw lines for petals and append them to the canvas
 function drawPetals(ix1, iy1, ix2, iy2, mx1, my1, mx2, my2, ox1, oy1, ox2, oy2, svg, color) {
     const path = document.createElementNS('http://www.w3.org/2000/svg', 'path');
     path.setAttribute('d', `M ${ix1} ${iy1} L ${mx1} ${my1} C ${ox1} ${oy1}, ${ox2} ${oy2}, ${mx2} ${my2} L ${ix2} ${iy2}`);
@@ -125,29 +124,6 @@ function drawPetals(ix1, iy1, ix2, iy2, mx1, my1, mx2, my2, ox1, oy1, ox2, oy2, 
     path.setAttribute('stroke-width', '3');
     path.setAttribute('fill', color);
     svg.appendChild(path);
-}
-
-// Generates coords to place flowers across grid
-function placeFlowers(el) {
-    const width = viewBoxW;
-    const height = viewBoxH;
-    const xInc = 55;
-    const yInc = 55;
-    for (let i = 0; i <= width + xInc; i += xInc) {
-        for (let j = 0; j <= height + yInc; j += yInc) {
-            let xRand = randomChoice(coordRandomizer);
-            let yRand = randomChoice(coordRandomizer);
-            coords.push([i + xRand, j + yRand]);
-        }
-    }
-
-    for (let k = 0; k < coords.length; k++) {
-        const flowerSize = randomChoice(flowerSizes);
-        const x = coords[k][0];
-        const y = coords[k][1];
-        drawFlower(x, y, flowerSize, el);
-    }
-    coords.length = 0;
 }
 
 function drawFlower(x, y, scale, el) {
@@ -175,6 +151,29 @@ function drawFlower(x, y, scale, el) {
     outerPoints.length = 0;
 }
 
+// Generates coords to place flowers across grid then places flowers on those coords
+function placeFlowers(el) {
+    const width = viewBoxW;
+    const height = viewBoxH;
+    const xInc = 55;
+    const yInc = 55;
+    for (let i = 0; i <= width + xInc; i += xInc) {
+        for (let j = 0; j <= height + yInc; j += yInc) {
+            let xRand = randomChoice(coordRandomizer);
+            let yRand = randomChoice(coordRandomizer);
+            coords.push([i + xRand, j + yRand]);
+        }
+    }
+
+    for (let k = 0; k < coords.length; k++) {
+        const flowerSize = randomChoice(flowerSizes);
+        const x = coords[k][0];
+        const y = coords[k][1];
+        drawFlower(x, y, flowerSize, el);
+    }
+    coords.length = 0;
+}
+
 // Handle button click
 button.addEventListener('click', () => {
     clear(canvas);
@@ -191,8 +190,3 @@ chooseColor.addEventListener('change', function () {
 placeFlowers(bannerCanvas);
 
 
-
-    // innerPoints.push([innerPoints[0][0], innerPoints[0][1]]);
-    // middlePoints.push([middlePoints[0][0], middlePoints[0][1]]);
-    // outerPoints.push([outerPoints[0][0], outerPoints[0][1]]);
-    // console.log(innerPoints);
