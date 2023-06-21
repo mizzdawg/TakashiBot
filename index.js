@@ -28,14 +28,15 @@ const colorPalettes = {
     pink: ['#ff0a54', '#ff477e', '#ff5c8a', '#ff7096', '#ff85a1', '#ff99ac', '#fbb1bd', '#f9bec7', '#f7cad0', '#fae0e4'],
     newBalance: ['#f2f2f2', '#cccccc', '#a5a5a5', '#7f7f7f', '#595959', '#eae0d5', '#c6ac8f', '#cebebe', '#ece2d0', '#d5b9b2', '#e21836']
 }
-
-// Set default value to rainbow palette
-let palette = colorPalettes.rainbow;
-
 // arrays containing data used to adjust size and placement of flowers
 const flowerSizes = [.15, 0.2, .25, 0.3];
 const coordRandomizer = [0, -5, 5, -6, 6, -7, 7, -8, 8, -9, 9, -10, 10, -20, 20, -30, 30];
 
+
+// Set default value to rainbow palette
+let palette = colorPalettes.rainbow;
+
+// Set viewBox
 bannerCanvas.setAttribute('viewBox', `0 0 ${viewBoxW} ${viewBoxH}`);
 canvas.setAttribute('viewBox', `0 0 ${viewBoxW} ${viewBoxH}`);
 
@@ -84,6 +85,10 @@ function petalPoints(centerX, centerY) {
         middlePoints.push([pointXM, pointYM]);
         outerPoints.push([pointXO, pointYO]);
     }
+
+    innerPoints.push([innerPoints[0][0], innerPoints[0][1]]);
+    middlePoints.push([middlePoints[0][0], middlePoints[0][1]]);
+    outerPoints.push([outerPoints[0][0], outerPoints[0][1]]);
 }
 
 // Draw flower mouth by creating path elements, setting attributes and appending them to canvas
